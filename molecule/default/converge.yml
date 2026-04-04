@@ -1,0 +1,29 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+
+  roles:
+    - roots.msmtp
+
+  post_tasks:
+    - name: Verify msmtp is installed.
+      command: msmtp --version
+      changed_when: false
+
+    - name: Verify /etc/msmtprc exists with correct permissions.
+      stat:
+        path: /etc/msmtprc
+      register: msmtprc
+      failed_when: not msmtprc.stat.exists or msmtprc.stat.mode != '0600'
+
+    - name: Verify sendmail symlink exists.
+      stat:
+        path: /usr/sbin/sendmail
+      register: sendmail
+      failed_when: not sendmail.stat.exists

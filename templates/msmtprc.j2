@@ -1,0 +1,41 @@
+# {{ ansible_managed }}
+
+defaults
+auth           {{ msmtp_auth }}
+tls            {{ msmtp_tls }}
+tls_starttls   {{ msmtp_tls_starttls }}
+set_from_header {{ msmtp_set_from_header }}
+domain         {{ msmtp_domain }}
+syslog         on
+
+account        default
+host           {{ msmtp_host }}
+port           {{ msmtp_port }}
+from           {{ msmtp_from }}
+{% if msmtp_auth | lower != "off" %}
+user           {{ msmtp_user }}
+password       {{ msmtp_password }}
+{% endif %}
+{% for acct in msmtp_accounts %}
+
+account        {{ acct.name }}
+host           {{ acct.host }}
+port           {{ acct.port | default(msmtp_port) }}
+from           {{ acct.from }}
+{% if acct.auth is defined %}
+auth           {{ acct.auth }}
+{% endif %}
+{% if acct.tls is defined %}
+tls            {{ acct.tls }}
+{% endif %}
+{% if acct.tls_starttls is defined %}
+tls_starttls   {{ acct.tls_starttls }}
+{% endif %}
+{% if acct.domain is defined %}
+domain         {{ acct.domain }}
+{% endif %}
+{% if (acct.auth | default(msmtp_auth)) | lower != "off" %}
+user           {{ acct.user }}
+password       {{ acct.password }}
+{% endif %}
+{% endfor %}
