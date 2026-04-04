@@ -2,7 +2,7 @@
 msmtp_package: msmtp
 msmtp_package_state: present
 
-msmtp_host: smtp.example.com
+msmtp_server: smtp.example.com:587
 msmtp_port: 587
 msmtp_from: admin@example.com
 msmtp_domain: example.com
@@ -18,7 +18,7 @@ msmtp_set_from_header: "on"
 # msmtp_accounts:
 #   - name: account_name
 #     host: smtp.example.com
-#     port: 587                          # optional, defaults to msmtp_port
+#     port: 587                          # optional, defaults to msmtp_port (from msmtp_server)
 #     from: user@example.com
 #     user: user@example.com
 #     password: "{{ vault_smtp_password }}"

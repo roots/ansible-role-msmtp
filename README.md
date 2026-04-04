@@ -29,13 +29,12 @@ A Debian-based (eg: Ubuntu) system.
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
 ```yaml
-msmtp_host: smtp.example.com
-msmtp_port: 587
+msmtp_server: smtp.example.com:587
 msmtp_from: admin@example.com
 msmtp_domain: example.com
 ```
 
-The SMTP server host, port, envelope sender, and EHLO domain.
+The SMTP server (host:port format, supports IPv6 with brackets like `[::1]:587`), envelope sender, and EHLO domain. If no port is specified in `msmtp_server`, the `msmtp_port` default (587) is used.
 
 ```yaml
 msmtp_auth: "on"

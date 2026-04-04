@@ -1,5 +1,18 @@
 # {{ ansible_managed }}
 
+{% set _server = msmtp_server | default('') -%}
+{% set _colons = _server.count(':') -%}
+{% if _server.startswith('[') and ']:' in _server -%}
+{%   set _host = _server.split(']:')[0] ~ ']' -%}
+{%   set _port = _server.split(']:')[1] -%}
+{% elif _colons == 1 -%}
+{%   set _host = _server.rsplit(':', 1)[0] -%}
+{%   set _port = _server.rsplit(':', 1)[1] -%}
+{% else -%}
+{%   set _host = _server -%}
+{%   set _port = msmtp_port | string -%}
+{% endif -%}
+
 defaults
 auth           {{ msmtp_auth }}
 tls            {{ msmtp_tls }}
@@ -9,8 +22,8 @@ domain         {{ msmtp_domain }}
 syslog         on
 
 account        default
-host           {{ msmtp_host }}
-port           {{ msmtp_port }}
+host           {{ _host }}
+port           {{ _port }}
 from           {{ msmtp_from }}
 {% if msmtp_auth | lower != "off" %}
 user           {{ msmtp_user }}
