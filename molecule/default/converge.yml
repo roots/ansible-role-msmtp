@@ -9,7 +9,14 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - roots.msmtp
+    - role: roots.msmtp
+      vars:
+        msmtp_server: smtp.example.com:587
+        msmtp_from: test@example.com
+        msmtp_domain: example.com
+        msmtp_user: test
+        msmtp_password: test
+        msmtp_auth: "off"
 
   post_tasks:
     - name: Verify msmtp is installed.
