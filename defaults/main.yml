@@ -1,15 +1,15 @@
 ---
 msmtp_package: msmtp
-msmtp_package_state: present
+msmtp_package_state: "{{ apt_package_state | default('present') }}"
 
-msmtp_server: smtp.example.com:587
+msmtp_server: "{{ mail_smtp_server }}"
 msmtp_port: 587
-msmtp_from: admin@example.com
-msmtp_domain: example.com
+msmtp_from: "{{ mail_admin }}"
+msmtp_domain: "{{ mail_hostname }}"
 
 msmtp_auth: "on"
-msmtp_user: ""
-msmtp_password: ""
+msmtp_user: "{{ mail_user }}"
+msmtp_password: "{{ mail_password }}"
 
 msmtp_tls: "on"
 msmtp_tls_starttls: "on"

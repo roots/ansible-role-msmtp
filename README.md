@@ -26,23 +26,35 @@ A Debian-based (eg: Ubuntu) system.
 
 ## Role Variables
 
+This role is designed for [Trellis](https://github.com/roots/trellis) and defaults to using Trellis's `mail_*` variables. When used outside of Trellis, override the variables below.
+
 Available variables are listed below, along with default values (see `defaults/main.yml`):
+
+```yaml
+msmtp_server: "{{ mail_smtp_server }}"
+msmtp_from: "{{ mail_admin }}"
+msmtp_domain: "{{ mail_hostname }}"
+msmtp_user: "{{ mail_user }}"
+msmtp_password: "{{ mail_password }}"
+```
+
+The SMTP server (host:port format, supports IPv6 with brackets like `[::1]:587`), envelope sender, EHLO domain, and credentials. If no port is specified in `msmtp_server`, the `msmtp_port` default (587) is used.
+
+For non-Trellis usage, set these directly:
 
 ```yaml
 msmtp_server: smtp.example.com:587
 msmtp_from: admin@example.com
 msmtp_domain: example.com
+msmtp_user: smtp_user
+msmtp_password: secret
 ```
-
-The SMTP server (host:port format, supports IPv6 with brackets like `[::1]:587`), envelope sender, and EHLO domain. If no port is specified in `msmtp_server`, the `msmtp_port` default (587) is used.
 
 ```yaml
 msmtp_auth: "on"
-msmtp_user: ""
-msmtp_password: ""
 ```
 
-SMTP authentication settings. Set `msmtp_auth` to `"off"` to disable authentication.
+SMTP authentication. Set to `"off"` to disable.
 
 ```yaml
 msmtp_tls: "on"
@@ -59,10 +71,26 @@ Optional list of additional accounts. Each account supports: `name`, `host`, `po
 
 ## Example Playbook
 
+With [Trellis](https://github.com/roots/trellis) (uses `mail_*` variables automatically):
+
 ```yaml
 - hosts: servers
   roles:
     - { role: roots.msmtp }
+```
+
+Standalone:
+
+```yaml
+- hosts: servers
+  roles:
+    - role: roots.msmtp
+      vars:
+        msmtp_server: smtp.example.com:587
+        msmtp_from: admin@example.com
+        msmtp_domain: example.com
+        msmtp_user: smtp_user
+        msmtp_password: "{{ vault_smtp_password }}"
 ```
 
 ## Community
