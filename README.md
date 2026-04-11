@@ -2,7 +2,7 @@
 
 <a href="https://github.com/roots/ansible-role-msmtp/releases"><img alt="Release" src="https://img.shields.io/github/release/roots/ansible-role-msmtp.svg?style=flat-square" /></a>
 <a href="https://github.com/roots/ansible-role-msmtp/actions"><img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/ansible-role-msmtp/ci.yml?branch=main&style=flat-square" /></a>
-<a href="https://galaxy.ansible.com/roots/msmtp"><img alt="Galaxy Downloads" src="https://img.shields.io/badge/dynamic/json?color=blueviolet&label=galaxy%20downloads&query=%24.download_count&url=https%3A%2F%2Fgalaxy.ansible.com%2Fapi%2Fv1%2Froles%2F%3Fname%3Dmsmtp%26namespace%3Droots&style=flat-square" /></a>
+<a href="https://galaxy.ansible.com/roots/msmtp"><img alt="Galaxy Downloads" src="https://img.shields.io/badge/dynamic/json?color=blueviolet&label=galaxy%20downloads&query=%24.download_count&url=https%3A%2F%2Fgalaxy.ansible.com%2Fapi%2Fv1%2Froles%2F42761%2F%3Fformat%3Djson&style=flat-square" /></a>
 <a href="https://twitter.com/rootswp"><img alt="Follow Roots" src="https://img.shields.io/badge/follow%20@rootswp-1da1f2?logo=twitter&logoColor=ffffff&message=&style=flat-square"></a>
 <a href="https://github.com/sponsors/roots"><img src="https://img.shields.io/badge/sponsor%20roots-525ddc?logo=github&style=flat-square&logoColor=ffffff&message=" alt="Sponsor Roots"></a>
 
