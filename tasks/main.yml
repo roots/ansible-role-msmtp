@@ -11,4 +11,4 @@
   template:
     src: msmtprc.j2
     dest: /etc/msmtprc
-    mode: '0600'
+    mode: "{{ msmtp_config_mode }}"

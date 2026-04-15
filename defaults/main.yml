@@ -1,6 +1,7 @@
 ---
 msmtp_package: msmtp
 msmtp_package_state: "{{ apt_package_state | default('present') }}"
+msmtp_config_mode: "0644"
 
 msmtp_server: "{{ mail_smtp_server }}"
 msmtp_port: 587
