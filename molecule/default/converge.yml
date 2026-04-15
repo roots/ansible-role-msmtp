@@ -27,7 +27,7 @@
       stat:
         path: /etc/msmtprc
       register: msmtprc
-      failed_when: not msmtprc.stat.exists or msmtprc.stat.mode != '0600'
+      failed_when: not msmtprc.stat.exists or msmtprc.stat.mode != '0644'
 
     - name: Verify sendmail symlink exists.
       stat:
