@@ -64,6 +64,12 @@ msmtp_tls_starttls: "on"
 TLS settings.
 
 ```yaml
+msmtp_allow_from_override: "on"
+```
+
+Allow the envelope-from passed on the command line (e.g. via `msmtp -f`) to override `msmtp_from`. Required for WordPress multisite so per-site From addresses aren't rewritten. Set to `"off"` to force all mail through `msmtp_from`.
+
+```yaml
 msmtp_accounts: []
 ```
 

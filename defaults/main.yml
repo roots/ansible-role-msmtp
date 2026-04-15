@@ -14,6 +14,7 @@ msmtp_password: "{{ mail_password }}"
 msmtp_tls: "on"
 msmtp_tls_starttls: "on"
 msmtp_set_from_header: "on"
+msmtp_allow_from_override: "on"
 
 # msmtp_accounts:
 #   - name: account_name

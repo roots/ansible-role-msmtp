@@ -18,6 +18,7 @@ auth           {{ msmtp_auth }}
 tls            {{ msmtp_tls }}
 tls_starttls   {{ msmtp_tls_starttls }}
 set_from_header {{ msmtp_set_from_header }}
+allow_from_override {{ msmtp_allow_from_override }}
 domain         {{ msmtp_domain }}
 syslog         on
 
